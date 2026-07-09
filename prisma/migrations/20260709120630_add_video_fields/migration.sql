@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "public"."Video" ADD COLUMN     "duration" INTEGER,
+ADD COLUMN     "likes" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN     "status" TEXT NOT NULL DEFAULT 'ACTIVE',
+ADD COLUMN     "thumbnail" TEXT,
+ADD COLUMN     "views" INTEGER NOT NULL DEFAULT 0;

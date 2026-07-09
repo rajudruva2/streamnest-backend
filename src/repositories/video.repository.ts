@@ -1,4 +1,4 @@
-
+ 
 import prisma from "../config/prisma";
 
 export interface CreateVideoDTO {
@@ -14,6 +14,14 @@ export class VideoRepository {
   async create(data: CreateVideoDTO) {
     return prisma.video.create({
       data,
+    });
+  }
+
+  async findAll() {
+    return prisma.video.findMany({
+      orderBy: {
+        uploadedAt: "desc",
+      },
     });
   }
 }

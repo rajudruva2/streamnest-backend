@@ -16,5 +16,10 @@ model Video {
   filepath    String
   filesize    Int
   mimetype    String
+  thumbnail   String?
+  duration    Int?
+  views        Int @default(0)
+  likes        Int @default(0)
+  status       String @default("ACTIVE")
   uploadedAt  DateTime @default(now())
 }
