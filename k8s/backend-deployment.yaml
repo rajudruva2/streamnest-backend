@@ -20,7 +20,7 @@ spec:
       containers:
       - name: backend
 
-        image: rajvam6806/streamnest-backend:${TAG}
+        image: rajvam6806/streamnest-backend:latest
 
         imagePullPolicy: Always
 
