@@ -4,7 +4,7 @@ pipeline {
 
     environment {
 
-        IMAGE_NAME = "YOUR_DOCKERHUB_USERNAME/streamnest-backend"
+        IMAGE_NAME = "rajvam6806/streamnest-backend"
 
         TAG = "${BUILD_NUMBER}"
 
@@ -57,8 +57,8 @@ pipeline {
 
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub',
-                    usernameVariable: 'USERNAME',
-                    passwordVariable: 'PASSWORD'
+                    usernameVariable: 'rajvam6806',
+                    passwordVariable: 'Harshu@11'
                 )]) {
 
                     sh '''
@@ -73,8 +73,8 @@ pipeline {
             steps {
 
                 sh 'docker push ${IMAGE_NAME}:${TAG}'
-                sh 'docker tag ${IMAGE_NAME}:${TAG} ${IMAGE_NAME}:latest'
-                sh 'docker push ${IMAGE_NAME}:latest'
+                sh 'docker tag ${IMAGE_NAME}:${TAG} rajvam6806/${IMAGE_NAME}:${TAG}'
+                sh 'docker push rajvam6806/${IMAGE_NAME}:${TAG}'
 
             }
 
@@ -86,7 +86,7 @@ pipeline {
 
                 sh '''
                 kubectl set image deployment/streamnest-backend \
-                backend=${IMAGE_NAME}:${TAG} \
+                backend=rajvam6806/${IMAGE_NAME}:${TAG} \
                 -n streamnest
                 '''
 
