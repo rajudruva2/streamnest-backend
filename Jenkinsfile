@@ -86,12 +86,11 @@ pipeline {
             sh '''
                 kubectl get nodes
 
-                kubectl set image deployment/streamnest-backend \
-                    backend=${IMAGE_NAME}:${TAG} \
-                    -n streamnest
+                kubectl apply -f k8s/
 
-                kubectl rollout status deployment/streamnest-backend \
-                    -n streamnest
+                kubectl get pods -n streamnest
+
+                kubectl get svc -n streamnest
             '''
         }
     }
