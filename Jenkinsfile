@@ -79,33 +79,24 @@ pipeline {
             }
 
         }
-
-        stage('Deploy to EKS') {
-
+    stage('Deploy to EKS') {
     steps {
-
-        withCredentials([
-            string(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_CONTENT')
-        ]) {
+        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
 
             sh '''
-                mkdir -p $WORKSPACE/.kube
-
-                echo "$KUBECONFIG_CONTENT" > $WORKSPACE/.kube/config
-
-                chmod 600 $WORKSPACE/.kube/config
-
-                export KUBECONFIG=$WORKSPACE/.kube/config
-
                 kubectl get nodes
 
                 kubectl set image deployment/streamnest-backend \
                     backend=${IMAGE_NAME}:${TAG} \
                     -n streamnest
+
+                kubectl rollout status deployment/streamnest-backend \
+                    -n streamnest
             '''
         }
     }
 }
+        
 
     }
 
