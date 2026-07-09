@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamnest-backend
+  namespace: streamnest
+
+spec:
+  selector:
+    app: streamnest-backend
+
+  ports:
+  - port: 3000
+    targetPort: 3000
+
+  type: ClusterIP
