@@ -20,7 +20,7 @@ spec:
       containers:
       - name: backend
 
-        image: YOUR_DOCKERHUB_USERNAME/streamnest-backend:latest
+        image: rajvam6806/streamnest-backend:${TAG}
 
         imagePullPolicy: Always
 
