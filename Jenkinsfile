@@ -73,8 +73,8 @@ pipeline {
             steps {
 
                 sh 'docker push ${IMAGE_NAME}:${TAG}'
-                sh 'docker tag ${IMAGE_NAME}:${TAG} rajvam6806/${IMAGE_NAME}:${TAG}'
-                sh 'docker push rajvam6806/${IMAGE_NAME}:${TAG}'
+                sh 'docker tag ${IMAGE_NAME}:${TAG} ${IMAGE_NAME}:${TAG}'
+                sh 'docker push ${IMAGE_NAME}:${TAG}'
 
             }
 
