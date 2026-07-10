@@ -36,4 +36,7 @@ spec:
           value: production
 
         - name: DATABASE_URL
-          value: postgresql://streamnest_user:StreamNest@123@postgres:5432/streamnest
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: DATABASE_URL
