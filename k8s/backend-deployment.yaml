@@ -21,6 +21,19 @@ spec:
       - name: uploads
         persistentVolumeClaim:
           claimName: streamnest-upload-pvc
+
+      initContainers:
+      - name: create-upload-dir
+        image: busybox
+        command:
+        - sh
+        - -c
+        - |
+          mkdir -p /app/uploads
+          chmod -R 777 /app/uploads
+        volumeMounts:
+        - name: uploads
+          mountPath: /app/uploads   
       containers:
       - name: backend
 
