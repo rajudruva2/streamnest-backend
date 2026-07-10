@@ -6,18 +6,15 @@ const router = Router();
 
 const controller = new VideoController();
 
-// Existing API (keep it)
-router.post("/videos", (req, res) => {
-  controller.create(req, res);
-});
-
-// New Upload API (add this)
 router.post(
   "/videos/upload",
   upload.single("video"),
-  (req, res) => {
-    controller.upload(req, res);
-  }
+  (req, res) => controller.upload(req, res)
+);
+
+router.get(
+  "/videos",
+  (req, res) => controller.list(req, res)
 );
 
 export default router;
