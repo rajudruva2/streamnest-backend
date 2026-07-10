@@ -18,7 +18,7 @@ export class VideoController {
         title: req.body.title,
         description: req.body.description,
         filename: req.file.filename,
-        filepath: req.file.path,
+        filepath: `uploads/${req.file.filename}`.replace(/\\/g, "/"),
         filesize: req.file.size,
         mimetype: req.file.mimetype
       });
