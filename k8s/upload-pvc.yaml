@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: streamnest-upload-pvc
+  namespace: streamnest
+
+spec:
+  accessModes:
+    - ReadWriteOnce
+
+  storageClassName: streamnest-gp3
+
+  resources:
+    requests:
+      storage: 50Gi
