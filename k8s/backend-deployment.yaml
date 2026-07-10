@@ -17,6 +17,10 @@ spec:
         app: streamnest-backend
 
     spec:
+      volumes:
+      - name: uploads
+        persistentVolumeClaim:
+          claimName: streamnest-upload-pvc
       containers:
       - name: backend
 
@@ -40,3 +44,6 @@ spec:
             secretKeyRef:
               name: backend-secret
               key: DATABASE_URL
+        volumeMounts:
+         - name: uploads
+           mountPath: /app/uploads     
