@@ -1,19 +1,24 @@
-
 import { Request, Response } from "express";
 import { VideoService } from "../services/video.service";
 
 const service = new VideoService();
 
 export class VideoController {
-  async create(req: Request, res: Response) {
+  async upload(req: Request, res: Response) {
     try {
+      if (!req.file) {
+        return res.status(400).json({
+          message: "Video file is required",
+        });
+      }
+
       const video = await service.create({
         title: req.body.title,
         description: req.body.description,
-        filename: req.body.filename,
-        filepath: req.body.filepath,
-        filesize: Number(req.body.filesize),
-        mimetype: req.body.mimetype,
+        filename: req.file.filename,
+        filepath: req.file.path,
+        filesize: req.file.size,
+        mimetype: req.file.mimetype,
       });
 
       return res.status(201).json(video);
