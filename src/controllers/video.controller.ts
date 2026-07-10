@@ -1,4 +1,3 @@
-
 import { Request, Response } from "express";
 import { VideoService } from "../services/video.service";
 
